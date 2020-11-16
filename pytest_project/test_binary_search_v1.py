@@ -25,9 +25,7 @@ def test_even_len_res_False():
 
 
 def atest_perf_search_rec():
-    global perfLIST
     bcList = []
-    print(perfLIST)
     for i in range(measure_param[0],measure_param[1],measure_param[2]):
 
         SETUP_CODE = '''
@@ -50,19 +48,17 @@ binary_search(mylist,%d)'''%(i,find)
     print(bcList)
 
     '''
-data_bc = [i for ind,i in enumerate(bc) if ind%3 == 0]
-data_wc = [i for ind,i in enumerate(bc) if ind%3 == 1]
-data_unk = [i for ind,i in enumerate(bc) if ind%3 == 2]
+# bc is best case, wc is worst case , unk is search failed case
+data_bc = [i for ind,i in enumerate(bcList) if ind%3 == 0]
+data_wc = [i for ind,i in enumerate(bcList) if ind%3 == 1]
+data_unk = [i for ind,i in enumerate(bcList) if ind%3 == 2]
 x = range(0, len(bc) // 3)
-
 import matplotlib.pyplot as plt
 plt.plot(x, data_bc, label="Match - BestCase")
 plt.plot(x, data_wc, label="Match - WorstCase")
 plt.plot(x, data_unk, label="NoMatch - WorstCase")
 plt.plot(np.unique(x), np.poly1d(np.polyfit(x, data_unk, 1))(np.unique(x)), label ="Fit")
-
 plt.plot()
-
 plt.xlabel("Samples")
 plt.ylabel("Time in secs from timeit")
 plt.title("compare time in secs vs Binary search algorithm")
